@@ -1,0 +1,95 @@
+.conteudo-principal {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    width: 100%;
+}
+
+.logo-texto {
+    font-family: var(--font-secundaria);
+    font-size: 2em;
+    color: var(--cor-terciaria);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    font-family: var(--font-primaria);
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--cor-terciaria);
+}
+
+.secao-beneficios {
+    padding: 80px 50px;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.header-beneficios {
+    margin-bottom: 50px;
+}
+
+.header-beneficios h2 {
+    font-family: var(--font-primaria);
+    font-size: 3rem;
+    color: var(--cor-titulos);
+    margin-bottom: 10px;
+}
+
+.header-beneficios p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.container-beneficios {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card-beneficio {
+    background-color: #fcf6f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 40px 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card-beneficio:hover {
+    transform: translateY(-10px);
+}
+
+.card-beneficio img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.card-beneficio h3 {
+    font-family: var(--font-primaria);
+    font-size: 1.5rem;
+    color: var(--cor-titulos);
+    margin-bottom: 10px;
+}
+
+.card-beneficio p {
+    font-size: 1rem;
+    color: #666;
+}
