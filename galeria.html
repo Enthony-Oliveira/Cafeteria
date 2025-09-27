@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/galeria.css">
+    <link rel="stylesheet" href="css/global.css">
+    <title>Bean Scene</title>
+</head>
+
+<body>
+    <div class="conteudo-principal">
+        <nav class="navbar">
+            <a href="index.html" class="logo-texto">Bean Scene</a>
+            <button class="hamburger-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="beneficios.html">Benefícios</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <h2 class="titulo-principal-produtos">Nossa Galeria</h2>
+
+        <div class="filtros-galeria">
+            <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+            <button class="filtro-btn" data-filtro="categoria1">CATEGORIA 1</button>
+            <button class="filtro-btn" data-filtro="categoria2">CATEGORIA 2</button>
+            <button class="filtro-btn" data-filtro="categoria3">CATEGORIA 3</button>
+        </div>
+
+        <div class="galeria-grid">
+            <div class="galeria-item" data-categoria="categoria1">
+                <img src="assets/img/cafeteria.png" alt="Ambiente por Dentro">
+                <div class="galeria-overlay">
+                    <h3>TÍTULO 1</h3>
+                    <p>DESCRIÇÃO BREVE 1</p>
+                    <button class="btn-ver-mais">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="galeria-item" data-categoria="categoria2">
+                <img src="assets/img/Reuniao.png" alt="[DESCRIÇÃO IMAGEM 2]">
+                <div class="galeria-overlay">
+                    <h3>TÍTULO 2</h3>
+                    <p>DESCRIÇÃO BREVE 2</p>
+                    <button class="btn-ver-mais">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="galeria-item galeria-item-grande" data-categoria="categoria1">
+                <img src="assets/img/interior.png" alt="[DESCRIÇÃO IMAGEM 3]">
+                <div class="galeria-overlay">
+                    <h3>TÍTULO 3</h3>
+                    <p>DESCRIÇÃO BREVE 3</p>
+                    <button class="btn-ver-mais">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="galeria-item" data-categoria="categoria3">
+                <img src="assets/img/cafes.png" alt="[DESCRIÇÃO IMAGEM 4]">
+                <div class="galeria-overlay">
+                    <h3>TÍTULO 4</h3>
+                    <p>DESCRIÇÃO BREVE 4</p>
+                    <button class="btn-ver-mais">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="galeria-item" data-categoria="categoria2">
+                <img src="assets/img/cafe-reuniao.png" alt="[DESCRIÇÃO IMAGEM 5]">
+                <div class="galeria-overlay">
+                    <h3>TÍTULO 5</h3>
+                    <p>DESCRIÇÃO BREVE 5</p>
+                    <button class="btn-ver-mais">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="galeria-item" data-categoria="categoria3">
+                <img src="assets/img/produto.png" alt="[DESCRIÇÃO IMAGEM 6]">
+                <div class="galeria-overlay">
+                    <h3>TÍTULO 6</h3>
+                    <p>DESCRIÇÃO BREVE 6</p>
+                    <button class="btn-ver-mais">Ver Detalhes</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-galeria" id="modalGaleria">
+            <span class="fechar-modal">&times;</span>
+            <img class="modal-conteudo" id="modalImagem">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-navegacao">
+                <button class="nav-btn prev">❮ Anterior</button>
+                <button class="nav-btn next">Próximo ❯</button>
+            </div>
+        </div>
+
+        <section class="estatisticas">
+            <h3>Nossos Números</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-numero" data-target="150">0</span>
+                    <span class="stat-label">Projetos Realizados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-numero" data-target="98">0</span>
+                    <span class="stat-label">Clientes Satisfeitos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-numero" data-target="5">0</span>
+                    <span class="stat-label">Anos de Experiência</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-numero" data-target="24">0</span>
+                    <span class="stat-label">Prêmios Recebidos</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
