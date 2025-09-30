@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/global.css">
+    <title>Bean Scene</title>
+</head>
+
+<body>
+    <div class="conteudo-principal">
+        <nav class="navbar">
+            <a href="index.html" class="logo-texto">Bean Scene</a>
+            <button class="hamburger-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="beneficios.html">Benefícios</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <section class="blog-hero">
+            <div class="hero-content">
+                <h1>Nosso Blog</h1>
+                <p>Fique por dentro das novidades, dicas e tendências do nosso setor</p>
+            </div>
+        </section>
+
+        <section class="blog-controles">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Pesquisar artigos..." class="search-input">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <div class="filtros-blog">
+                <button class="filtro-blog ativo" data-categoria="todas">Todas</button>
+                <button class="filtro-blog" data-categoria="dicas">CATEGORIA 1 - Ex: Dicas</button>
+                <button class="filtro-blog" data-categoria="novidades">CATEGORIA 2 - Ex: Novidades</button>
+                <button class="filtro-blog" data-categoria="tutoriais">CATEGORIA 3 - Ex: Tutoriais</button>
+            </div>
+        </section>
+
+        <section class="blog-grid">
+            <article class="artigo-destaque" data-categoria="dicas">
+                <div class="artigo-imagem">
+                    <img src="assets/img/service.png" alt="TÍTULO ARTIGO 1">
+                    <span class="artigo-tag">Em Destaque</span>
+                </div>
+                <div class="artigo-conteudo">
+                    <div class="artigo-meta">
+                        <span class="categoria">Dicas</span>
+                        <span class="data">15 Nov 2024</span>
+                        <span class="tempo-leitura">5 min</span>
+                    </div>
+                    <h2>TÍTULO DO ARTIGO 1</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, dolore perferendis quas facere consequuntur quo ipsam odit vitae accusamus, quibusdam doloribus minus? Temporibus provident expedita nisi voluptate natus neque maxime.</p>
+                    <div class="artigo-autor">
+                        <img src="assets/img/pic-1.png" alt="Autor">
+                        <div>
+                            <span class="autor-nome">NOME AUTOR</span>
+                            <span class="autor-cargo">CARGO AUTOR</span>
+                        </div>
+                    </div>
+                    <button class="btn-ler-mais">Ler Mais</button>
+                </div>
+            </article>
+
+            <div class="artigos-container">
+                <article class="artigo-card" data-categoria="novidades">
+                    <div class="artigo-imagem">
+                        <img src="assets/img/clientes.png" alt="TÍTULO ARTIGO 2">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Novidades</span>
+                            <span class="data">10 Nov 2024</span>
+                            <span class="tempo-leitura">3 min</span>
+                        </div>
+                        <h3>TÍTULO DO ARTIGO 2</h3>
+                        <p>RESUMO DO ARTIGO 2</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <article class="artigo-card" data-categoria="tutoriais">
+                    <div class="artigo-imagem">
+                        <img src="assets/img/preparo.png" alt="TÍTULO ARTIGO 3">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Tutoriais</span>
+                            <span class="data">5 Nov 2024</span>
+                            <span class="tempo-leitura">7 min</span>
+                        </div>
+                        <h3>TÍTULO DO ARTIGO 3</h3>
+                        <p>RESUMO DO ARTIGO 3</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <article class="artigo-card" data-categoria="dicas">
+                    <div class="artigo-imagem">
+                        <img src="assets/img/atendente.png" alt="TÍTULO ARTIGO 4">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Dicas</span>
+                            <span class="data">1 Nov 2024</span>
+                            <span class="tempo-leitura">4 min</span>
+                        </div>
+                        <h3>TÍTULO DO ARTIGO 4</h3>
+                        <p>RESUMO DO ARTIGO 4</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <article class="artigo-card" data-categoria="novidades">
+                    <div class="artigo-imagem">
+                        <img src="assets/img/services.png" alt="TÍTULO ARTIGO 5">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Novidades</span>
+                            <span class="data">28 Out 2024</span>
+                            <span class="tempo-leitura">6 min</span>
+                        </div>
+                        <h3>TÍTULO DO ARTIGO 5</h3>
+                        <p>RESUMO DO ARTIGO 5</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+
+                <article class="artigo-card" data-categoria="tutoriais">
+                    <div class="artigo-imagem">
+                        <img src="assets/img/cliente.png" alt="TÍTULO ARTIGO 6">
+                    </div>
+                    <div class="artigo-conteudo">
+                        <div class="artigo-meta">
+                            <span class="categoria">Tutoriais</span>
+                            <span class="data">25 Out 2024</span>
+                            <span class="tempo-leitura">8 min</span>
+                        </div>
+                        <h3>TÍTULO DO ARTIGO 6</h3>
+                        <p>RESUMO DO ARTIGO 6</p>
+                        <button class="btn-ler-mais">Ler Mais</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="paginacao">
+            <button class="page-btn" data-page="prev">← Anterior</button>
+            <button class="page-btn active" data-page="1">1</button>
+            <button class="page-btn" data-page="2">2</button>
+            <button class="page-btn" data-page="3">3</button>
+            <button class="page-btn" data-page="next">Próximo →</button>
+        </div>
+        <section class="newsletter-section">
+            <div class="newsletter-content">
+                <h3>Assine Nossa Newsletter</h3>
+                <p>Receba os melhores artigos diretamente no seu email</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu melhor email" required>
+                    <button type="submit">Assinar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
