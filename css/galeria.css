@@ -76,6 +76,11 @@
         z-index: 5;
     }
 
+    .nav-links li a {
+        text-decoration: none;
+        color: var(--cor-terciaria);
+    }
+
     .nav-links.active {
         right: 0;
     }

@@ -1,0 +1,438 @@
+/* Variáveis CSS para fácil manutenção */
+:root {
+    /* Cores Light Mode */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-accent: #e8e8e8;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #dee2e6;
+    --shadow-light: rgba(0,0,0,0.1);
+    --shadow-medium: rgba(0,0,0,0.15);
+    --shadow-heavy: rgba(0,0,0,0.2);
+    
+    /* Cores que permanecem iguais */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-success: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    --accent-color: #667eea;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-accent: #3d3d3d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #999999;
+    --border-color: #444444;
+    --shadow-light: rgba(255,255,255,0.05);
+    --shadow-medium: rgba(255,255,255,0.1);
+    --shadow-heavy: rgba(255,255,255,0.15);
+}
+
+/* ================================================= */
+/* NOVO ESTILO: TOGGLE SOL/LUA (Substitui o .dark-mode-toggle original) */
+/* ================================================= */
+
+/* Configuração de Posicionamento e Tamanho do Switch */
+.day-night-toggle-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: inline-block;
+    width: 70px; /* Largura do toggle */
+    height: 38px; /* Altura do toggle */
+    cursor: pointer;
+}
+
+/* Esconde o checkbox padrão */
+.day-night-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* O "Trilho" do Switch (Slider) */
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.4s ease;
+    border-radius: 38px;
+    overflow: hidden; 
+    border: 2px solid var(--border-color); /* Usa sua variável de borda */
+    box-shadow: 0 4px 8px var(--shadow-medium);
+}
+
+/* --------------------------------- */
+/* ESTADO PADRÃO (LIGHT MODE - DIA) */
+/* --------------------------------- */
+.slider {
+    /* Fundo Azul Claro do dia (Simula o céu) */
+    background-color: #87CEEB; 
+}
+
+/* O "Círculo" (Manopla) - Sol */
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 4px; /* Posição inicial (esquerda) */
+    bottom: 2px;
+    background-color: #FFD700; /* Sol Amarelo */
+    transition: transform 0.4s ease, background-color 0.4s ease;
+    border-radius: 50%; 
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* --------------------------------- */
+/* ESTADO DARK MODE (QUANDO MARCADO) */
+/* --------------------------------- */
+
+/* 1. Mude o fundo do trilho para a cor da noite */
+input:checked + .slider {
+    background-color: #000000; /* Fundo Preto (Céu de Noite) */
+    border-color: var(--border-color); /* Mantém o estilo da borda Dark Mode */
+}
+
+/* 2. Mova o círculo (Lua) para a direita e mude a cor */
+input:checked + .slider::before {
+    transform: translateX(32px); 
+    background-color: #F0F8FF; /* Lua Branca/Cinza */
+    box-shadow: 0 0 5px rgba(240, 248, 255, 0.5);
+}
+
+/* Efeito de Estrelas no Dark Mode */
+input:checked + .slider {
+    background-image: 
+        radial-gradient(circle at 10% 20%, #fff 1px, transparent 0),
+        radial-gradient(circle at 50% 60%, #ccc 1px, transparent 0),
+        radial-gradient(circle at 80% 40%, #fff 0.5px, transparent 0);
+    background-size: 15px 15px, 20px 20px, 10px 10px;
+}
+
+/* Removidas classes antigas (.toggle-icon, .toggle-text) que não se aplicam ao novo switch. */
+
+
+/* Aplicar variáveis CSS a todos os elementos existentes */
+
+/* Body and General */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Headers */
+header {
+    background: var(--gradient-primary);
+    box-shadow: 0 2px 10px var(--shadow-medium);
+}
+
+/* Main Content Areas */
+.principal {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 20px; /* Adicionado para visualização */
+    min-height: 100vh;
+}
+
+.beneficios {
+    background: var(--bg-primary);
+}
+
+/* Cards and Items */
+.produtos li,
+.artigo-card,
+.artigo-destaque,
+.galeria-item,
+.faq-item {
+    background: var(--bg-primary);
+    box-shadow: 0 5px 15px var(--shadow-light);
+    border: 1px solid var(--border-color);
+    margin-top: 15px; /* Adicionado para visualização */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.produtos li:hover,
+.artigo-card:hover,
+.artigo-destaque:hover {
+    box-shadow: 0 10px 25px var(--shadow-medium);
+}
+
+/* Text Colors */
+.titulo-centralizado,
+.titulo-principal-produtos,
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+p, span, div {
+    color: var(--text-secondary);
+}
+
+.produto-descricao,
+.faq-resposta p {
+    color: var(--text-secondary);
+}
+
+/* Form Elements */
+.input-padrao,
+.search-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.input-padrao:focus,
+.search-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-padrao::placeholder,
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Fieldsets and Legends */
+fieldset {
+    border-color: var(--border-color);
+    background: var(--bg-primary);
+}
+
+legend {
+    background: var(--gradient-primary);
+}
+
+/* FAQ Specific */
+.faq-section {
+    background: var(--bg-secondary);
+}
+
+.faq-pergunta {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.faq-pergunta:hover {
+    background: var(--bg-secondary);
+}
+
+.faq-resposta {
+    background: var(--bg-secondary);
+}
+
+/* Blog Specific */
+.blog-controles {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.filtro-blog,
+.page-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.filtro-blog:hover,
+.page-btn:hover {
+    background: var(--bg-secondary);
+}
+
+/* Tables */
+.horarios {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.horarios th,
+.horarios td {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.horarios tbody tr:hover {
+    background: var(--bg-secondary);
+}
+
+/* Info Sections */
+.informacoes-contato {
+    background: var(--bg-primary);
+}
+
+.info-item {
+    background: var(--bg-secondary);
+}
+
+.info-item h4 {
+    color: var(--text-primary);
+}
+
+.info-item p {
+    color: var(--text-secondary);
+}
+
+/* Newsletter */
+.newsletter-section {
+    background: var(--gradient-primary);
+}
+
+/* Depoimentos */
+.depoimentos {
+    background: var(--gradient-primary);
+}
+
+.depoimento-card {
+    background: var(--bg-primary);
+    backdrop-filter: blur(10px);
+    border-color: var(--border-color);
+}
+
+.depoimento-texto {
+    color: var(--text-secondary);
+}
+
+.depoimento-autor h4 {
+    color: var(--text-primary);
+}
+
+.depoimento-autor span {
+    color: var(--text-secondary);
+}
+
+/* Gallery Items */
+.galeria-overlay {
+    background: linear-gradient(to top, 
+        rgba(0,0,0,0.9) 0%, 
+        rgba(0,0,0,0.7) 50%, 
+        rgba(0,0,0,0) 100%);
+}
+
+/* Custom Radio and Checkbox */
+.radio-custom {
+    border-color: var(--border-color);
+    background: var(--bg-primary);
+}
+
+.checkbox-custom {
+    border-color: var(--border-color);
+    background: var(--bg-primary);
+}
+
+/* Statistics Section */
+.estatisticas {
+    background: var(--gradient-primary);
+}
+
+.stat-item {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* Modal */
+.modal-galeria {
+    background: rgba(0,0,0,0.95);
+}
+
+.modal-caption {
+    color: white;
+}
+
+/* Smooth Transitions */
+* {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Dark Mode Images Filter */
+[data-theme="dark"] img:not(.no-filter):not([src*="logo"]):not([src*="cliente"]) {
+    filter: brightness(0.8) contrast(1.1);
+}
+
+/* Logo específico para dark mode */
+[data-theme="dark"] header img,
+[data-theme="dark"] footer img {
+    filter: brightness(1.2);
+}
+
+/* Scrollbar Dark Mode */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Special Effects for Dark Mode */
+[data-theme="dark"] .produtos li::before,
+[data-theme="dark"] .artigo-card::before {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    opacity: 0.05;
+}
+
+/* Toggle Button Animation (Adaptado para o novo switch, mas removendo estilos de texto não usados) */
+.day-night-toggle-switch.switching {
+    animation: switchTheme 0.6s ease;
+}
+
+@keyframes switchTheme {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Mobile Responsivity for Toggle */
+@media (max-width: 768px) {
+    .day-night-toggle-switch { /* Use a nova classe */
+        top: 15px;
+        right: 15px;
+        width: 60px; /* Tamanho ajustado */
+        height: 34px;
+    }
+
+    .day-night-toggle-switch .slider::before {
+        height: 26px;
+        width: 26px;
+        bottom: 2px;
+    }
+
+    input:checked + .slider::before {
+        /* (60px de largura - 26px do círculo - 4px left - 4px right) = 26px de translação */
+        transform: translateX(26px); 
+    }
+}
+
+/* Print Styles - Always Light Mode */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+}
