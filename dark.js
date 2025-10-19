@@ -1,21 +1,14 @@
-/* === DARK MODE JAVASCRIPT ADAPTADO PARA TOGGLE SOL/LUA (Geração de HTML) === */
-
 class DarkModeToggle {
     constructor() {
         this.init();
-        // A função loadSavedTheme chamará setTheme, que sincronizará o checkbox.
-        this.loadSavedTheme(); 
+        this.loadSavedTheme();
         this.bindEvents();
     }
 
     init() {
-        // Criar o botão de toggle (agora um label com checkbox)
         this.createToggleButton();
-        
-        // Definir tema padrão baseado na preferência do sistema
+
         this.systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Escutar mudanças na preferência do sistema (se não houver preferência do usuário)
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!this.hasUserPreference()) {
                 this.setTheme(e.matches ? 'dark' : 'light');
@@ -31,27 +24,20 @@ class DarkModeToggle {
         // </label>
 
         this.toggleLabel = document.createElement('label');
-        // Usamos a classe CSS 'day-night-toggle-switch'
-        this.toggleLabel.className = 'day-night-toggle-switch'; 
+        this.toggleLabel.className = 'day-night-toggle-switch';
         this.toggleLabel.setAttribute('aria-label', 'Alternar tema escuro/claro');
         this.toggleLabel.setAttribute('title', 'Alternar tema');
 
         this.toggleInput = document.createElement('input');
         this.toggleInput.type = 'checkbox';
         this.toggleInput.id = 'theme-switch';
-        
-        this.sliderSpan = document.createElement('span');
-        this.sliderSpan.className = 'slider round'; // O CSS usará esta classe para o visual Sol/Lua
 
-        // Anexar elementos
+        this.sliderSpan = document.createElement('span');
+        this.sliderSpan.className = 'slider round';
         this.toggleLabel.appendChild(this.toggleInput);
         this.toggleLabel.appendChild(this.sliderSpan);
-        
-        // Anexar o label ao body
         document.body.appendChild(this.toggleLabel);
-        
-        // Referência para usar no método toggle
-        this.toggleButton = this.toggleInput; 
+        this.toggleButton = this.toggleInput;
     }
 
     bindEvents() {
@@ -77,10 +63,10 @@ class DarkModeToggle {
     toggle(isUserAction = false) {
         const currentTheme = this.getCurrentTheme();
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         // Aplicar a classe de animação no LABEL
         this.toggleLabel.classList.add('switching');
-        
+
         // Remover após animação
         setTimeout(() => {
             this.toggleLabel.classList.remove('switching');
@@ -90,26 +76,26 @@ class DarkModeToggle {
         if (!isUserAction) {
             this.toggleInput.checked = (newTheme === 'dark');
         }
-        
+
         this.setTheme(newTheme);
     }
 
     setTheme(theme) {
         // Aplicar tema ao documento
         document.documentElement.setAttribute('data-theme', theme);
-        
+
         // Sincronizar o estado do checkbox com o tema
         this.toggleInput.checked = (theme === 'dark');
-        
+
         // Salvar preferência do usuário
         this.saveTheme(theme);
-        
+
         // Atualiza a ARIA label
         this.updateAriaLabel(theme);
-        
+
         // Disparar evento personalizado
         this.dispatchThemeChange(theme);
-        
+
         console.log(`Tema alterado para: ${theme}`);
     }
 
@@ -134,14 +120,14 @@ class DarkModeToggle {
     loadSavedTheme() {
         try {
             let savedTheme = this.getCookieValue('theme');
-            
+
             if (!savedTheme) {
                 savedTheme = this.systemPrefersDark ? 'dark' : 'light';
             }
 
             // Define o tema e o estado do checkbox
             this.setTheme(savedTheme);
-            
+
         } catch (error) {
             console.warn('Erro ao carregar tema salvo:', error);
             this.setTheme('light');
@@ -176,7 +162,7 @@ class DarkModeToggle {
         if (typeof updateChartsTheme === 'function') {
             updateChartsTheme(theme);
         }
-        
+
         const themeChangeEvent = new Event('darkModeToggled');
         window.dispatchEvent(themeChangeEvent);
     }
