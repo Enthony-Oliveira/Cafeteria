@@ -1,11 +1,18 @@
 .fundo {
   background-image: url(../assets/img/coffee-image.png);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  height: 100vh;
+  background-size: cover;         /* cobre toda a tela */
+  background-position: center;    /* centraliza a imagem */
+  background-repeat: no-repeat;
+  background-attachment: scroll;  /* imagem acompanha o movimento */
+  
+  width: 100%;
+  height: 100vh;                  /* ocupa toda a altura da janela */
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 
 .camadapreta {
   position: absolute;
@@ -114,7 +121,7 @@
 .main-title {
   font-family: var(--font-secundaria);
   font-weight: 200;
-  font-size: 220px;
+  font-size: 190px;
   color: var(--cor-terciaria);
   margin-top: -20px;
   padding: 50px;

@@ -30,17 +30,14 @@
 }
 
 .day-night-toggle-switch {
-    position: fixed;
-    top: 55px;
-    right: 20px;
-    z-index: 1000;
-    display: inline-block;
-    width: 70px;
-    /* Largura do toggle */
-    height: 38px;
-    /* Altura do toggle */
+    position: relative;         /* não fixa mais na tela */
+    display: inline-block;      /* mantém tamanho apenas do botão */
+    width: 65px;                /* largura do switch */
+    height: 38px;               /* altura do switch */
+    margin-left: 1rem;          /* distância do logo/menu */
+    flex-shrink: 0;             /* impede o flex de esticar */
     cursor: pointer;
-}
+  }
 
 /* Esconde o checkbox padrão */
 .day-night-toggle-switch input {
