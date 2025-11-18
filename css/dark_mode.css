@@ -1,28 +1,70 @@
+/* ============================== */
+/* 🎨 VARIÁVEIS DO TEMA (LIGHT MODE) */
+/* ============================== */
+
 :root {
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #1E1E1E;
+    /* Fontes */
+    --font-primaria: Roboto;
+    --font-secundaria: Clicker Script;
+
+    /* Paleta Light */
+    --cor-primaria: #F9C06A;
+    --cor-secundaria: #1E1E1E;
+    /* Textos escuros */
+    --cor-terciaria: #FFFFFF;
+    /* Background principal */
+    --cor-titulos: #603809;
+    --cor-subtitulos: #707070;
+
+    /* Extras */
+    --bg-secondary: #f5f5f5;
     --bg-accent: #e8e8e8;
-    --text-primary: #333333;
+
     --text-secondary: #666666;
     --text-muted: #999999;
+
     --border-color: #dee2e6;
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.15);
+
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
     --shadow-heavy: rgba(0, 0, 0, 0.2);
+
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-success: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     --accent-color: #667eea;
+
     --success-color: #28a745;
     --danger-color: #dc3545;
 }
 
+/* ============================== */
+/* 🌙 VARIÁVEIS DO MODO ESCURO */
+/* ============================== */
+
 [data-theme="dark"] {
-    --bg-primary: #1a1a1a;
+
+    /* Backgrounds principais */
+    --cor-terciaria: #1a1a1a;
     --bg-secondary: #2d2d2d;
     --bg-accent: #3d3d3d;
-    --text-primary: #ffffff;
+
+    /* TEXTOS */
+    --cor-secundaria: #ffffff;
+    /* Textos como nav-links, logo */
     --text-secondary: #cccccc;
+    /* Textos padrão */
     --text-muted: #999999;
+    /* textos fracos */
+
+    /* Títulos (como produtos, menu h3, etc.) */
+    --cor-titulos: #eeeeee;
+
+    /* Subtítulos */
+    --cor-subtitulos: #bbbbbb;
+
+    /* Manter sua cor primária igual */
+    --cor-primaria: #F9C06A;
+
+    /* Borda e sombra */
     --border-color: #444444;
     --shadow-light: rgba(255, 255, 255, 0.05);
     --shadow-medium: rgba(255, 255, 255, 0.1);
@@ -30,14 +72,20 @@
 }
 
 .day-night-toggle-switch {
-    position: relative;         /* não fixa mais na tela */
-    display: inline-block;      /* mantém tamanho apenas do botão */
-    width: 65px;                /* largura do switch */
-    height: 38px;               /* altura do switch */
-    margin-left: 1rem;          /* distância do logo/menu */
-    flex-shrink: 0;             /* impede o flex de esticar */
+    position: relative;
+    /* não fixa mais na tela */
+    display: inline-block;
+    /* mantém tamanho apenas do botão */
+    width: 65px;
+    /* largura do switch */
+    height: 38px;
+    /* altura do switch */
+    margin-left: 1rem;
+    /* distância do logo/menu */
+    flex-shrink: 0;
+    /* impede o flex de esticar */
     cursor: pointer;
-  }
+}
 
 /* Esconde o checkbox padrão */
 .day-night-toggle-switch input {
@@ -121,28 +169,28 @@ input:checked+.slider {
 
 /* Body and General */
 body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: var(--cor-terciaria);
+    color: var(--cor-terciaria);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Headers */
 header {
-    background: var(--gradient-primary);
+    background: var(--cor-terciaria);
     box-shadow: 0 2px 10px var(--shadow-medium);
 }
 
 /* Main Content Areas */
 .principal {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
+    background: var(--cor-terciaria);
+    color: var(--cor-terciaria);
     padding: 20px;
     /* Adicionado para visualização */
     min-height: 100vh;
 }
 
 .beneficios {
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
 }
 
 /* Cards and Items */
@@ -151,7 +199,7 @@ header {
 .artigo-destaque,
 .galeria-item,
 .faq-item {
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
     box-shadow: 0 5px 15px var(--shadow-light);
     border: 1px solid var(--border-color);
     margin-top: 15px;
@@ -175,7 +223,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--text-primary);
+    color: var(--cor-terciaria);
 }
 
 p,
@@ -197,8 +245,8 @@ input[type="email"],
 input[type="tel"],
 textarea,
 select {
-    background: var(--bg-primary);
-    color: var(--text-primary);
+    background: var(--cor-terciaria);
+    color: var(--cor-terciaria);
     border-color: var(--border-color);
 }
 
@@ -216,7 +264,7 @@ select {
 /* Fieldsets and Legends */
 fieldset {
     border-color: var(--border-color);
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
 }
 
 legend {
@@ -229,8 +277,8 @@ legend {
 }
 
 .faq-pergunta {
-    background: var(--bg-primary);
-    color: var(--text-primary);
+    background: var(--cor-terciaria);
+    color: var(--cor-terciaria);
 }
 
 .faq-pergunta:hover {
@@ -249,8 +297,8 @@ legend {
 
 .filtro-blog,
 .page-btn {
-    background: var(--bg-primary);
-    color: var(--text-primary);
+    background: var(--cor-terciaria);
+    color: var(--cor-terciaria);
     border-color: var(--border-color);
 }
 
@@ -261,14 +309,14 @@ legend {
 
 /* Tables */
 .horarios {
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
     border-color: var(--border-color);
 }
 
 .horarios th,
 .horarios td {
     border-color: var(--border-color);
-    color: var(--text-primary);
+    color: var(--cor-terciaria);
 }
 
 .horarios tbody tr:hover {
@@ -277,7 +325,7 @@ legend {
 
 /* Info Sections */
 .informacoes-contato {
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
 }
 
 .info-item {
@@ -285,7 +333,7 @@ legend {
 }
 
 .info-item h4 {
-    color: var(--text-primary);
+    color: var(--cor-terciaria);
 }
 
 .info-item p {
@@ -303,7 +351,7 @@ legend {
 }
 
 .depoimento-card {
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
     backdrop-filter: blur(10px);
     border-color: var(--border-color);
 }
@@ -313,7 +361,7 @@ legend {
 }
 
 .depoimento-autor h4 {
-    color: var(--text-primary);
+    color: var(--cor-terciaria);
 }
 
 .depoimento-autor span {
@@ -331,12 +379,12 @@ legend {
 /* Custom Radio and Checkbox */
 .radio-custom {
     border-color: var(--border-color);
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
 }
 
 .checkbox-custom {
     border-color: var(--border-color);
-    background: var(--bg-primary);
+    background: var(--cor-terciaria);
 }
 
 /* Statistics Section */

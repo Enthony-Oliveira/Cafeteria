@@ -149,12 +149,13 @@
 }
 
 .icone-grao {
-    padding: 15px; 
+    padding: 15px;
     border: 2px solid #654321;
     border-radius: 50%;
 }
 
 .card-titulo {
+    color: var(--cor-titulos);
     font-size: 1.25em;
     font-weight: bold;
     margin-top: 0;
@@ -173,6 +174,7 @@
 }
 
 .cta-destaque {
+    color: var(--cor-titulos);
     font-size: 1.8em;
     font-weight: bold;
     margin-top: 5px;

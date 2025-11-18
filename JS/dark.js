@@ -17,11 +17,6 @@ class DarkModeToggle {
     }
 
     createToggleButton() {
-        // Estrutura HTML COMPLETA criada via JavaScript:
-        // <label class="day-night-toggle-switch">
-        //   <input type="checkbox" id="theme-switch">
-        //   <span class="slider round"></span>
-        // </label>
 
         this.toggleLabel = document.createElement('label');
         this.toggleLabel.className = 'day-night-toggle-switch';
@@ -46,12 +41,10 @@ class DarkModeToggle {
     }
 
     bindEvents() {
-        // O evento de clique principal é agora no checkbox (evento 'change')
         this.toggleInput.addEventListener('change', () => {
-            this.toggle(true); // Chamamos toggle com flag indicando que é uma ação do usuário
+            this.toggle(true);
         });
 
-        // Atalho de teclado (Ctrl/Cmd + Shift + D)
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
                 e.preventDefault();
@@ -59,7 +52,6 @@ class DarkModeToggle {
             }
         });
 
-        // Evento personalizado para outras partes do código
         document.addEventListener('themeChanged', (e) => {
             this.onThemeChange(e.detail.theme);
         });
@@ -69,15 +61,12 @@ class DarkModeToggle {
         const currentTheme = this.getCurrentTheme();
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-        // Aplicar a classe de animação no LABEL
         this.toggleLabel.classList.add('switching');
 
-        // Remover após animação
         setTimeout(() => {
             this.toggleLabel.classList.remove('switching');
         }, 600);
 
-        // Se a chamada veio do atalho de teclado, atualize o estado do checkbox
         if (!isUserAction) {
             this.toggleInput.checked = (newTheme === 'dark');
         }
@@ -86,19 +75,14 @@ class DarkModeToggle {
     }
 
     setTheme(theme) {
-        // Aplicar tema ao documento
         document.documentElement.setAttribute('data-theme', theme);
 
-        // Sincronizar o estado do checkbox com o tema
         this.toggleInput.checked = (theme === 'dark');
 
-        // Salvar preferência do usuário
         this.saveTheme(theme);
 
-        // Atualiza a ARIA label
         this.updateAriaLabel(theme);
 
-        // Disparar evento personalizado
         this.dispatchThemeChange(theme);
 
         console.log(`Tema alterado para: ${theme}`);
@@ -130,7 +114,6 @@ class DarkModeToggle {
                 savedTheme = this.systemPrefersDark ? 'dark' : 'light';
             }
 
-            // Define o tema e o estado do checkbox
             this.setTheme(savedTheme);
 
         } catch (error) {
@@ -193,7 +176,6 @@ class DarkModeToggle {
     }
 }
 
-// Inicialização e Funções Utilitárias (Mantidas)
 document.addEventListener('DOMContentLoaded', () => {
     window.darkModeToggle = new DarkModeToggle();
     console.log('Dark Mode Toggle inicializado:', window.darkModeToggle.getThemeInfo());
