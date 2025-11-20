@@ -1,0 +1,269 @@
+/* ======== DARK MODE — MAPA ======== */
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #1e1e1e;
+}
+
+.logo-texto {
+    color: #ffffff;
+}
+
+.nav-links li a {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .bar {
+        background-color: #ffffff;
+    }
+
+    .nav-links {
+        background-color: rgba(0, 0, 0, 0.95);
+    }
+
+    .nav-links li a {
+        color: #ffffff;
+    }
+}
+
+/* TÍTULO */
+.titulo-principal-produtos {
+    color: #F9C06A;
+    text-align: center;
+    margin: 40px 0 30px;
+    font-size: 2rem;
+}
+
+/* ===== CONTROLES DO MAPA ===== */
+.mapa-controles {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.controle-item {
+    display: flex;
+}
+
+.mapa-controles button,
+.select-tipo-mapa {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #F9C06A;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mapa-controles button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.mapa-controles button:hover,
+.select-tipo-mapa:hover {
+    background-color: #2a2a2a;
+}
+
+.select-tipo-mapa {
+    appearance: none;
+}
+
+/* ===== MAPA ===== */
+.mapa-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.mapa {
+    width: 100%;
+    height: 100%;
+}
+
+/* PAINEL LATERAL */
+.info-panel {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    width: 320px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: 0.3s ease;
+    padding: 20px;
+    border-left: 1px solid #F9C06A;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.info-panel.open {
+    transform: translateX(0);
+}
+
+.fechar-panel {
+    background: none;
+    border: none;
+    color: #F9C06A;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.info-content {
+    margin-top: 40px;
+    color: #fff;
+}
+
+/* ===== CARDS DE LOCALIZAÇÃO ===== */
+.localizacoes-disponiveis {
+    margin-top: 50px;
+    padding: 0 10%;
+}
+
+.localizacoes-disponiveis h3 {
+    color: #F9C06A;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.localizacoes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.local-card {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1 1 320px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.local-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.local-card .local-endereco,
+.local-card .local-horario {
+    color: #cccccc;
+    margin: 5px 0;
+}
+
+.local-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.local-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.btn-ir-mapa,
+.btn-ligar {
+    background-color: #F9C06A;
+    color: #1e1e1e;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-ir-mapa:hover,
+.btn-ligar:hover {
+    background-color: #e3aa5e;
+}
+
+.btn-ligar svg {
+    width: 18px;
+    height: 18px;
+}
+
+.distancia {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #d6d6d6;
+}
+
+/* ===== INSTRUÇÕES ===== */
+.instrucoes-acesso {
+    margin-top: 60px;
+    padding: 0 10% 60px;
+}
+
+.instrucoes-acesso h3 {
+    color: #F9C06A;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.instrucoes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.instrucao-item {
+    flex: 1 1 250px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.instrucao-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.instrucao-item h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.instrucao-item p {
+    color: #cccccc;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .mapa-container {
+        height: 380px;
+    }
+
+    .info-panel {
+        width: 100%;
+        height: 50%;
+        bottom: 0;
+        top: auto;
+        transform: translateY(100%);
+        border-left: none;
+        border-top: 1px solid #F9C06A;
+    }
+
+    .info-panel.open {
+        transform: translateY(0);
+    }
+}

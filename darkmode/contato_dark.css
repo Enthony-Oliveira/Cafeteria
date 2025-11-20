@@ -1,0 +1,149 @@
+/* ===== DARK MODE – CONTATO ===== */
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #1e1e1e;
+}
+
+.logo-texto {
+    color: #ffffff;
+}
+
+.nav-links li a {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .bar {
+        background-color: #ffffff;
+    }
+
+    .nav-links {
+        background-color: rgba(0, 0, 0, 0.95);
+    }
+
+    .nav-links li a {
+        color: #ffffff;
+    }
+}
+
+/* SESSÃO CONTATO */
+.secao-contato {
+    background-color: #121212;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px 10%;
+    gap: 40px;
+}
+
+/* BLOCO DE INFORMAÇÕES */
+.contato-info {
+    flex: 1;
+    min-width: 280px;
+    color: #ffffff;
+}
+
+.contato-info h2 {
+    color: #F9C06A;
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+.contato-info p {
+    color: #cccccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.contato-info ul {
+    list-style: none;
+}
+
+.contato-info li {
+    margin-bottom: 12px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contato-info i {
+    color: #F9C06A;
+    font-size: 1.2rem;
+}
+
+/* FORMULÁRIO */
+.formulario-contato {
+    flex: 1;
+    min-width: 320px;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.campo-form label {
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.campo-form input,
+.campo-form textarea {
+    background-color: #121212;
+    border: 1px solid #F9C06A;
+    padding: 12px;
+    color: #ffffff;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.campo-form input::placeholder,
+.campo-form textarea::placeholder {
+    color: #bbbbbb;
+}
+
+.campo-form input:focus,
+.campo-form textarea:focus {
+    border-color: #e3aa5e;
+}
+
+/* BOTÃO */
+.btn-enviar {
+    background-color: #F9C06A;
+    color: #1e1e1e;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background-color: #e3aa5e;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .secao-contato {
+        padding: 40px 20px;
+    }
+
+    .formulario-contato {
+        width: 100%;
+    }
+}

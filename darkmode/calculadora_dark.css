@@ -1,0 +1,119 @@
+:root {
+    --bg-main: #121212;
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --accent-color: #F9C06A; 
+    --border-color: #444444;
+    --cor-secundaria: #ffffff;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.navbar {
+    background-color: var(--bg-primary);
+}
+
+.logo-texto, .nav-links a {
+    color: var(--cor-secundaria);
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.calculadora-inputs, 
+.calculadora-resultados {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.input-group label {
+    color: var(--accent-color);
+}
+
+.input-group input,
+.input-group select {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(249, 192, 106, 0.2); /* Sombra suave do destaque */
+}
+
+/* 4. Botão Calcular */
+.btn-calcular {
+    /* Usa a cor de destaque principal */
+    background: linear-gradient(135deg, var(--accent-color) 0%, #e0ac5d 100%); 
+    color: #121212; /* Texto escuro no botão claro */
+}
+
+/* 5. Resultados */
+.resultado-valor {
+    /* Reajustando o gradiente para usar o destaque (ou pode ser uma cor sólida no dark mode) */
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ffe0b2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.detalhe-item {
+    background: var(--bg-secondary);
+}
+
+.btn-acao {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+.btn-acao:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-main); /* Preto no destaque */
+}
+
+/* 6. Informações e Histórico */
+.info-educativa {
+    background: var(--bg-secondary);
+}
+
+.info-card {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.info-card:hover {
+    border-color: var(--accent-color);
+}
+
+.historico-calculos {
+    background: var(--bg-primary);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.historico-item {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent-color);
+}
+
+.btn-limpar-historico {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+    background: transparent;
+}
+
+.btn-limpar-historico:hover {
+    background: var(--danger-color);
+    color: var(--text-primary);
+}

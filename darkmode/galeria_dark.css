@@ -1,0 +1,167 @@
+/* ======== DARK MODE — GALERIA ======== */
+
+/* Fundo geral */
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #1e1e1e;
+}
+
+.logo-texto {
+    color: #ffffff;
+}
+
+.nav-links li a {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .bar {
+        background-color: #ffffff;
+    }
+
+    .nav-links {
+        background-color: rgba(0, 0, 0, 0.95);
+    }
+
+    .nav-links li a {
+        color: #ffffff;
+    }
+}
+
+/* TÍTULO PRINCIPAL */
+.titulo-principal-produtos {
+    color: #F9C06A;
+}
+
+/* FILTROS */
+.filtros-galeria {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.filtro-btn {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #F9C06A;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.filtro-btn:hover {
+    background-color: #F9C06A;
+    color: #1e1e1e;
+}
+
+.filtro-btn.ativo {
+    background-color: #F9C06A;
+    color: #1e1e1e;
+}
+
+/* GALERIA GRID */
+.galeria-grid {
+    background-color: #121212;
+}
+
+.galeria-item {
+    background-color: #000; /* fundo atrás da imagem */
+}
+
+/* OVERLAY */
+.galeria-overlay {
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+}
+
+.galeria-overlay h3 {
+    color: #F9C06A;
+}
+
+.galeria-overlay p {
+    color: #e0e0e0;
+}
+
+.btn-ver-mais {
+    background-color: #F9C06A;
+    color: #1e1e1e;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-ver-mais:hover {
+    background-color: #e3aa5e;
+}
+
+/* MODAL */
+.modal-galeria {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-conteudo {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+.modal-caption {
+    color: #ffffff;
+}
+
+.fechar-modal {
+    color: #ffffff;
+}
+
+.nav-btn {
+    background-color: #F9C06A;
+    color: #1e1e1e;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.nav-btn:hover {
+    background-color: #e3aa5e;
+}
+
+/* ESTATÍSTICAS */
+.estatisticas {
+    background-color: #1e1e1e;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.estatisticas h3 {
+    color: #F9C06A;
+}
+
+.stat-item {
+    color: #ffffff;
+}
+
+.stat-numero {
+    color: #F9C06A;
+}
+
+.stat-label {
+    color: #cccccc;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .estatisticas {
+        background-color: #1e1e1e;
+    }
+
+    .galeria-item {
+        background-color: #000;
+    }
+}

@@ -2,8 +2,7 @@ class CalculadoraInterativa {
     constructor() {
         this.resultadosDiv = document.getElementById('calculadoraResultados');
         this.historicoLista = document.getElementById('historicoLista');
-        
-        this.historico = [];
+        this.historico = JSON.parse(localStorage.getItem('historicoCafe')) || [];
         
         this.graficoAtual = null;
         
@@ -11,34 +10,13 @@ class CalculadoraInterativa {
     }
 
     init() {
-        this.configurarSeletorTipo();
-        
         this.configurarValidacoes();
+        this.atualizarHistoricoUI();
+        window.calcularProporcaoCafe = this.calcularProporcaoCafe.bind(this);
+        window.limparHistorico = this.limparHistorico.bind(this);
+        window.calculadora = this;
         
-        console.log('Calculadora inicializada!');
-    }
-
-    configurarSeletorTipo() {
-        const botoes = document.querySelectorAll('.tipo-btn');
-        const secoes = document.querySelectorAll('.calc-section');
-
-        botoes.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remover active de todos
-                botoes.forEach(b => b.classList.remove('active'));
-                secoes.forEach(s => s.classList.remove('active'));
-
-                btn.classList.add('active');
-                const tipo = btn.getAttribute('data-tipo');
-                const secao = document.querySelector(`[data-section="${tipo}"]`);
-                
-                if (secao) {
-                    secao.classList.add('active');
-                }
-
-                this.limparResultados();
-            });
-        });
+        console.log('Calculadora de Proporção de Café inicializada!');
     }
 
     configurarValidacoes() {
@@ -55,8 +33,9 @@ class CalculadoraInterativa {
                 } else {
                     e.target.style.borderColor = '';
                 }
+                
+                this.limparResultados();
             });
-
             input.addEventListener('keypress', (e) => {
                 if (e.key === '-' && input.min >= 0) {
                     e.preventDefault();
@@ -69,10 +48,11 @@ class CalculadoraInterativa {
         this.resultadosDiv.innerHTML = `
             <div class="placeholder-resultado">
                 <svg viewBox="0 0 24 24" fill="currentColor" class="calc-icon">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    <path
+                        d="M18.86 5.86c-1.39-1.39-3.22-2.14-5.14-2.14H9V2c0-.55-.45-1-1-1S7 1.45 7 2v1H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9.14c0-1.92-.75-3.75-2.14-5.14zM10 5h2.14c1.47 0 2.87.57 3.92 1.62.77.77 1.28 1.7 1.5 2.76H10V5zm9 14H5V5h3v4c0 .55.45 1 1 1h8c.55 0 1-.45 1-1V5.17c.56.24 1.07.61 1.5 1.05V19z" />
                 </svg>
                 <h3>Aguardando Cálculo</h3>
-                <p>Preencha os campos e clique em calcular para ver os resultados</p>
+                <p>Preencha os campos e clique em calcular para ver a proporção ideal</p>
             </div>
         `;
 
@@ -123,11 +103,11 @@ class CalculadoraInterativa {
                     </svg>
                     Compartilhar
                 </button>
-                <button class="btn-acao" onclick="calcularIMC(); calcularCalorias(); calcularRacao();">
+                <button class="btn-acao" onclick="calculadora.limparResultados()">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
                     </svg>
-                    Recalcular
+                    Novo Cálculo
                 </button>
             </div>
         `;
@@ -206,22 +186,27 @@ class CalculadoraInterativa {
             this.historico.pop();
         }
 
+        localStorage.setItem('historicoCafe', JSON.stringify(this.historico));
         this.atualizarHistoricoUI();
     }
 
     atualizarHistoricoUI() {
         if (this.historico.length === 0) {
-            this.historicoLista.innerHTML = '<p class="historico-vazio">Nenhum cálculo realizado ainda</p>';
+            this.historicoLista.innerHTML = '<p class="historico-vazio">Nenhum cálculo de café realizado ainda</p>';
             return;
         }
 
         let html = '';
         this.historico.forEach((item, index) => {
+            // Detalhe principal para exibição no histórico
+            const cafe = item.detalhes.find(d => d.label.includes('Café')).valor;
+            const agua = item.detalhes.find(d => d.label.includes('Água')).valor;
+            
             html += `
                 <div class="historico-item">
                     <div class="historico-info">
                         <div class="historico-tipo">${this.obterTituloCalculo(item.tipo)}</div>
-                        <div class="historico-resultado">${item.valor}</div>
+                        <div class="historico-resultado">☕ ${cafe} : 💧 ${agua}</div>
                         <div class="historico-data">${item.data}</div>
                     </div>
                     <button class="btn-ver-historico" onclick="calculadora.verDetalheHistorico(${index})">
@@ -238,20 +223,26 @@ class CalculadoraInterativa {
         const item = this.historico[index];
         if (!item) return;
 
-        alert(`Detalhes do Cálculo:\n\nTipo: ${this.obterTituloCalculo(item.tipo)}\nResultado: ${item.valor}\nData: ${item.data}`);
+        let detalhes = item.detalhes.map(d => `${d.label}: ${d.valor}`).join('\n');
+
+        alert(`Detalhes do Cálculo de Café:\n\nProporção: ${item.valor}\n\n${detalhes}\n\nData: ${item.data}`);
     }
 
     compartilharResultado() {
-        const resultadoTexto = this.resultadosDiv.querySelector('.resultado-valor')?.textContent;
-        const tipoCalculo = this.resultadosDiv.querySelector('.resultado-header h3')?.textContent;
+        const proporcao = this.resultadosDiv.querySelector('.resultado-valor')?.textContent;
+        const cafeG = this.resultadosDiv.querySelector('.detalhe-item:nth-child(1) .detalhe-valor')?.textContent;
+        const aguaML = this.resultadosDiv.querySelector('.detalhe-item:nth-child(2) .detalhe-valor')?.textContent;
 
-        if (!resultadoTexto) return;
+        if (!proporcao || !cafeG || !aguaML) {
+            alert('Calcule a proporção antes de compartilhar!');
+            return;
+        }
 
-        const texto = `Meu resultado de ${tipoCalculo}: ${resultadoTexto}`;
+        const texto = `Minha Proporção de Café na Bean Scene:\nProporção: 1:${proporcao}\n- Café: ${cafeG}\n- Água: ${aguaML}\n#BeanSceneCoffee`;
 
         if (navigator.share) {
             navigator.share({
-                title: tipoCalculo,
+                title: 'Calculadora de Proporção de Café',
                 text: texto
             }).catch(err => console.log('Erro ao compartilhar:', err));
         } else {
@@ -260,28 +251,28 @@ class CalculadoraInterativa {
             });
         }
     }
-
+    
     obterTituloCalculo(tipo) {
         const titulos = {
-            'imc': 'Cálculo de IMC',
-            'calorias': 'Gasto Calórico Diário',
-            'racao': 'Quantidade de Ração'
+            'cafe': 'Resultado da Proporção de Café'
         };
         return titulos[tipo] || 'Cálculo';
     }
 
     validarInputs(ids) {
+        let isValid = true;
         for (let id of ids) {
             const elemento = document.getElementById(id);
             if (!elemento) continue;
 
             const valor = elemento.value.trim();
             
-            if (valor === '' || valor === null) {
+            if (valor === '' || valor === null || parseFloat(valor) <= 0) {
                 elemento.focus();
                 elemento.style.borderColor = '#dc3545';
-                alert(`Por favor, preencha o campo: ${elemento.previousElementSibling?.textContent || id}`);
-                return false;
+                alert(`Por favor, preencha o campo: ${elemento.previousElementSibling?.textContent || id} com um valor válido.`);
+                isValid = false;
+                break; 
             }
 
             if (elemento.type === 'number') {
@@ -293,11 +284,106 @@ class CalculadoraInterativa {
                     elemento.focus();
                     elemento.style.borderColor = '#dc3545';
                     alert(`Valor inválido no campo: ${elemento.previousElementSibling?.textContent || id}`);
-                    return false;
+                    isValid = false;
+                    break;
                 }
             }
+            elemento.style.borderColor = '';
         }
-        return true;
+        return isValid;
+    }
+
+    calcularProporcaoCafe() {
+        if (!this.validarInputs(['proporcao-cafe'])) {
+            return;
+        }
+
+        const proporcaoDesejada = parseFloat(document.getElementById('proporcao-cafe').value);
+        const cafeGInput = document.getElementById('cafe-g');
+        const aguaMLInput = document.getElementById('agua-ml');
+        
+        let cafeG = parseFloat(cafeGInput.value) || 0;
+        let aguaML = parseFloat(aguaMLInput.value) || 0;
+        
+        let resultadoProporcao;
+        let cafeCalculado = 0;
+        let aguaCalculada = 0;
+        
+        if (cafeG > 0 && aguaML === 0) {
+            aguaCalculada = cafeG * proporcaoDesejada;
+            cafeCalculado = cafeG;
+            resultadoProporcao = proporcaoDesejada;
+            
+        } else if (aguaML > 0 && cafeG === 0) {
+            cafeCalculado = aguaML / proporcaoDesejada;
+            aguaCalculada = aguaML;
+            resultadoProporcao = proporcaoDesejada;
+            
+        } else if (cafeG > 0 && aguaML > 0) {
+            resultadoProporcao = aguaML / cafeG;
+            cafeCalculado = cafeG;
+            aguaCalculada = aguaML;
+        } else {
+            alert('Por favor, preencha a quantidade de Café (g) ou Água (ml) para calcular a proporção.');
+            return;
+        }
+
+        // Determinar classificação
+        let classificacao = '';
+        let classe = '';
+        
+        if (resultadoProporcao >= 14 && resultadoProporcao <= 18) {
+            classificacao = 'Proporção Ideal (Golden Ratio)';
+            classe = 'classificacao-normal';
+        } else if ((resultadoProporcao > 18 && resultadoProporcao <= 20) || (resultadoProporcao >= 12 && resultadoProporcao < 14)) {
+            classificacao = 'Proporção Aceitável';
+            classe = 'classificacao-alerta';
+        } else {
+            classificacao = 'Proporção Extrema';
+            classe = 'classificacao-perigo';
+        }
+
+        const cafeFinal = cafeCalculado.toFixed(1);
+        const aguaFinal = aguaCalculada.toFixed(0);
+
+        const dados = {
+            tipo: 'cafe',
+            valor: `1:${resultadoProporcao.toFixed(1)}`,
+            classificacao: {
+                texto: classificacao,
+                classe: classe
+            },
+            detalhes: [
+                { label: 'Café (g)', valor: `${cafeFinal} g` },
+                { label: 'Água (ml)', valor: `${aguaFinal} ml` },
+                { label: 'Proporção Desejada', valor: `1:${proporcaoDesejada}` }
+            ],
+            grafico: {
+                tipo: 'pie',
+                label: 'Distribuição de Café e Água',
+                labels: ['Café (g)', 'Água (ml)'],
+                valores: [cafeCalculado, aguaCalculada],
+                cores: [
+                    'rgba(139, 69, 19, 0.7)',
+                    'rgba(102, 126, 234, 0.7)'
+                ],
+                coresBorda: [
+                    'rgba(139, 69, 19, 1)',
+                    'rgba(102, 126, 234, 1)'
+                ]
+            }
+        };
+
+        this.exibirResultado(dados);
+    }
+
+    limparHistorico() {
+        if (confirm('Tem certeza que deseja limpar todo o histórico de cálculos de café?')) {
+            this.historico = [];
+            localStorage.removeItem('historicoCafe');
+            this.atualizarHistoricoUI();
+            alert('Histórico de cálculos limpo!');
+        }
     }
 }
 
@@ -306,205 +392,3 @@ let calculadora;
 document.addEventListener('DOMContentLoaded', () => {
     calculadora = new CalculadoraInterativa();
 });
-
-function calcularIMC() {
-    if (!calculadora.validarInputs(['peso', 'altura'])) {
-        return;
-    }
-
-    const peso = parseFloat(document.getElementById('peso').value);
-    const alturaEmCm = parseFloat(document.getElementById('altura').value);
-    const alturaEmMetros = alturaEmCm / 100;
-
-    const imc = peso / (alturaEmMetros * alturaEmMetros);
-
-    let classificacao = '';
-    let classe = '';
-    let faixas = [];
-
-    if (imc < 18.5) {
-        classificacao = 'Abaixo do peso';
-        classe = 'classificacao-alerta';
-    } else if (imc >= 18.5 && imc < 25) {
-        classificacao = 'Peso normal';
-        classe = 'classificacao-normal';
-    } else if (imc >= 25 && imc < 30) {
-        classificacao = 'Sobrepeso';
-        classe = 'classificacao-alerta';
-    } else if (imc >= 30 && imc < 35) {
-        classificacao = 'Obesidade Grau I';
-        classe = 'classificacao-perigo';
-    } else if (imc >= 35 && imc < 40) {
-        classificacao = 'Obesidade Grau II';
-        classe = 'classificacao-perigo';
-    } else {
-        classificacao = 'Obesidade Grau III';
-        classe = 'classificacao-perigo';
-    }
-
-    const pesoIdealMin = 18.5 * (alturaEmMetros * alturaEmMetros);
-    const pesoIdealMax = 24.9 * (alturaEmMetros * alturaEmMetros);
-
-    const dados = {
-        tipo: 'imc',
-        valor: imc.toFixed(1),
-        classificacao: {
-            texto: classificacao,
-            classe: classe
-        },
-        detalhes: [
-            { label: 'Peso Atual', valor: `${peso.toFixed(1)} kg` },
-            { label: 'Altura', valor: `${alturaEmCm} cm` },
-            { label: 'Peso Ideal', valor: `${pesoIdealMin.toFixed(1)} - ${pesoIdealMax.toFixed(1)} kg` }
-        ],
-        grafico: {
-            tipo: 'bar',
-            label: 'Classificação IMC',
-            labels: ['Abaixo', 'Normal', 'Sobrepeso', 'Obesidade'],
-            valores: [18.5, 24.9, 29.9, imc > 30 ? imc : 30],
-            cores: [
-                imc < 18.5 ? 'rgba(255, 193, 7, 0.6)' : 'rgba(255, 193, 7, 0.2)',
-                imc >= 18.5 && imc < 25 ? 'rgba(40, 167, 69, 0.6)' : 'rgba(40, 167, 69, 0.2)',
-                imc >= 25 && imc < 30 ? 'rgba(255, 193, 7, 0.6)' : 'rgba(255, 193, 7, 0.2)',
-                imc >= 30 ? 'rgba(220, 53, 69, 0.6)' : 'rgba(220, 53, 69, 0.2)'
-            ]
-        }
-    };
-
-    calculadora.exibirResultado(dados);
-}
-
-function calcularCalorias() {
-    if (!calculadora.validarInputs(['peso-cal', 'altura-cal', 'idade', 'sexo', 'atividade'])) {
-        return;
-    }
-
-    const peso = parseFloat(document.getElementById('peso-cal').value);
-    const altura = parseFloat(document.getElementById('altura-cal').value);
-    const idade = parseInt(document.getElementById('idade').value);
-    const sexo = document.getElementById('sexo').value;
-    const nivelAtividade = parseFloat(document.getElementById('atividade').value);
-    let tmb;
-    if (sexo === 'masculino') {
-        tmb = 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade);
-    } else {
-        tmb = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
-    }
-
-    const tdee = tmb * nivelAtividade;
-
-    const manutencao = tdee;
-    const perderPeso = tdee - 500;
-    const ganharPeso = tdee + 500;
-
-    const nivelAtividadeTexto = document.getElementById('atividade').options[document.getElementById('atividade').selectedIndex].text;
-
-    const dados = {
-        tipo: 'calorias',
-        valor: `${Math.round(tdee)} kcal/dia`,
-        classificacao: {
-            texto: 'Gasto Estimado',
-            classe: 'classificacao-normal'
-        },
-        detalhes: [
-            { label: 'TMB (repouso)', valor: `${Math.round(tmb)} kcal` },
-            { label: 'TDEE (total)', valor: `${Math.round(tdee)} kcal` },
-            { label: 'Para perder peso', valor: `${Math.round(perderPeso)} kcal` },
-            { label: 'Para ganhar peso', valor: `${Math.round(ganharPeso)} kcal` },
-            { label: 'Nível de atividade', valor: nivelAtividadeTexto }
-        ],
-        grafico: {
-            tipo: 'bar',
-            label: 'Calorias por Objetivo',
-            labels: ['Perder Peso', 'Manutenção', 'Ganhar Peso'],
-            valores: [Math.round(perderPeso), Math.round(manutencao), Math.round(ganharPeso)],
-            cores: [
-                'rgba(220, 53, 69, 0.6)',
-                'rgba(40, 167, 69, 0.6)',
-                'rgba(102, 126, 234, 0.6)'
-            ]
-        }
-    };
-
-    calculadora.exibirResultado(dados);
-}
-
-function calcularRacao() {
-    // Validar inputs
-    if (!calculadora.validarInputs(['peso-pet', 'idade-pet', 'atividade-pet'])) {
-        return;
-    }
-
-    const pesoPet = parseFloat(document.getElementById('peso-pet').value);
-    const idadePet = document.getElementById('idade-pet').value;
-    const atividadePet = document.getElementById('atividade-pet').value;
-
-    let percentualBase = 2.5;
-
-    if (idadePet === 'filhote') {
-        percentualBase = 4.0;
-    } else if (idadePet === 'senior') {
-        percentualBase = 2.0;
-    }
-
-    if (atividadePet === 'baixa') {
-        percentualBase *= 0.9;
-    } else if (atividadePet === 'alta') {
-        percentualBase *= 1.2;
-    }
-
-    const quantidadeDiaria = (pesoPet * 1000 * percentualBase) / 100;
-    const quantidadePorRefeicao = quantidadeDiaria / 2;
-    const quantidadeMensal = (quantidadeDiaria * 30) / 1000;
-
-    let classificacaoPeso = '';
-    if (pesoPet < 5) {
-        classificacaoPeso = 'Porte Pequeno';
-    } else if (pesoPet >= 5 && pesoPet < 15) {
-        classificacaoPeso = 'Porte Médio';
-    } else if (pesoPet >= 15 && pesoPet < 30) {
-        classificacaoPeso = 'Porte Grande';
-    } else {
-        classificacaoPeso = 'Porte Gigante';
-    }
-
-    const dados = {
-        tipo: 'racao',
-        valor: `${Math.round(quantidadeDiaria)}g/dia`,
-        classificacao: {
-            texto: classificacaoPeso,
-            classe: 'classificacao-normal'
-        },
-        detalhes: [
-            { label: 'Peso do Pet', valor: `${pesoPet} kg` },
-            { label: 'Por Refeição (2x/dia)', valor: `${Math.round(quantidadePorRefeicao)}g` },
-            { label: 'Consumo Mensal', valor: `${quantidadeMensal.toFixed(1)} kg` },
-            { label: 'Fase da Vida', valor: idadePet.charAt(0).toUpperCase() + idadePet.slice(1) },
-            { label: 'Atividade', valor: atividadePet.charAt(0).toUpperCase() + atividadePet.slice(1) }
-        ],
-        grafico: {
-            tipo: 'doughnut',
-            label: 'Distribuição Diária',
-            labels: ['Manhã', 'Noite', 'Petiscos (10%)'],
-            valores: [
-                Math.round(quantidadePorRefeicao),
-                Math.round(quantidadePorRefeicao),
-                Math.round(quantidadeDiaria * 0.1)
-            ],
-            cores: [
-                'rgba(255, 193, 7, 0.6)',
-                'rgba(102, 126, 234, 0.6)',
-                'rgba(40, 167, 69, 0.6)'
-            ]
-        }
-    };
-
-    calculadora.exibirResultado(dados);
-}
-
-function limparHistorico() {
-    if (confirm('Tem certeza que deseja limpar todo o histórico?')) {
-        calculadora.historico = [];
-        calculadora.atualizarHistoricoUI();
-    }
-}

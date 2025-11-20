@@ -1,0 +1,83 @@
+/* ======== ESTILOS DO MENU (AGORA USANDO VARIÁVEIS MAPEADAS) ======== */
+
+/* IMPORTANTE: Removido o seletor 'body' para evitar conflito com o global */
+
+/* NAVBAR - Usa as cores que mudam com o tema */
+.navbar {
+    background-color: var(--cor-fundo-card); /* Usando a variável de card, que é um pouco mais escura que o fundo principal */
+}
+
+.logo-texto {
+    color: var(--cor-texto-principal);
+}
+
+.nav-links li a {
+    color: var(--cor-texto-principal);
+}
+
+@media (max-width: 768px) {
+    .bar {
+        background-color: var(--cor-texto-principal);
+    }
+
+    .nav-links {
+        /* Fundo do menu mobile. Usando a cor de fundo do card para ser mais escura */
+        background-color: var(--cor-fundo-card); 
+    }
+
+    .nav-links li a {
+        color: var(--cor-texto-principal);
+    }
+}
+
+/* SEÇÃO MENU */
+.secao-menu {
+    background-color: var(--cor-fundo-principal);
+}
+
+.titulo-menu {
+    color: var(--cor-destaque-primario); /* Laranja de Destaque */
+}
+
+.subtitulo-menu {
+    color: var(--cor-texto-secundario); /* Texto Cinza/Subtítulos */
+}
+
+/* CARDS */
+.card-produto {
+    background-color: var(--cor-fundo-card); /* Fundo do card */
+    /* Ajustando o box-shadow para ser sutil e mudar conforme o tema */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Redefinindo a sombra no modo escuro para ser sutil */
+html[data-theme="dark"] .card-produto {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05); 
+}
+
+.card-info h3 {
+    color: var(--cor-texto-principal);
+}
+
+.card-info p {
+    color: var(--cor-texto-secundario);
+}
+
+.card-info .preco {
+    color: var(--cor-destaque-primario);
+}
+
+/* BOTÃO */
+.btn-order-card {
+    background-color: var(--cor-destaque-primario); /* Laranja */
+    color: var(--cor-texto-principal); /* O texto do botão deve ser escuro ou contrastante */
+}
+
+.btn-order-card:hover {
+    background-color: var(--cor-destaque-titulos); /* Usando a variável de títulos para hover */
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    /* Não são necessários ajustes aqui se o CSS principal já usa as variáveis */
+}

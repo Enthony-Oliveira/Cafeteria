@@ -1,0 +1,147 @@
+
+/* agendamento-dark.css */
+
+/* Paleta Dark */
+:root {
+    --bg-primary: #121212;
+    --bg-secondary: #1E1E1E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    --text-muted: #888888;
+    --border-color: #333333;
+
+    --accent-color: #7B61FF;
+    --success-color: #28a745;
+}
+
+/* Container principal */
+.conteudo-principal {
+    background: var(--bg-primary);
+}
+
+/* Navbar */
+.navbar {
+    background: var(--bg-primary);
+}
+
+.logo-texto,
+.nav-links li a {
+    color: var(--text-primary);
+}
+
+.titulo-principal-produtos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+    font-family: var(--font-primaria);
+}
+
+/* Barra de progresso */
+.progress-container {
+    background: #1A1A1A;
+}
+
+.progress-bar::before {
+    background: #333;
+}
+
+.step-number {
+    background: var(--bg-secondary);
+    border-color: #444;
+    color: var(--text-muted);
+}
+
+.step-label {
+    color: var(--text-secondary);
+}
+
+/* Cards de serviço */
+.servico-card {
+    background: var(--bg-secondary);
+    border-color: #333;
+}
+
+.servico-card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.servico-card h4,
+.servico-descricao,
+.servico-duracao,
+.servico-preco {
+    color: var(--text-primary);
+}
+
+/* Calendário */
+.calendario-wrapper,
+.horarios-wrapper {
+    background: var(--bg-secondary);
+    border-color: #333;
+}
+
+.calendario-header h4,
+.horarios-wrapper h4 {
+    color: var(--text-primary);
+}
+
+.calendario-dias-semana div,
+.dia {
+    color: var(--text-secondary);
+}
+
+.dia.selecionado {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Formulário */
+.form-dados {
+    background: var(--bg-secondary);
+    border-color: #333;
+}
+
+.form-group label {
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    background: #222;
+    border-color: #444;
+    color: var(--text-primary);
+}
+
+/* Resumo */
+.resumo-card {
+    background: #1D1D1D;
+    border-color: #333;
+}
+
+.resumo-label {
+    color: var(--text-muted);
+}
+
+.resumo-valor {
+    color: var(--text-primary);
+}
+
+/* Modal */
+.modal-content {
+    background: #1D1D1D;
+}
+
+.sucesso-codigo {
+    background: #222;
+}
+
+/* Ajuda */
+.ajuda-section {
+    background: #1A1A1A;
+}
+
+.ajuda-card {
+    background: #222;
+}
+

@@ -1,22 +1,102 @@
 :root {
-  --font-primaria: Roboto;
-  --font-secundaria: Clicker Script;
-  --cor-primaria: #F9C06A;
-  --cor-secundaria: #1E1E1E;
-  --cor-terciaria: #FFFFFF;
-  --cor-titulos: #603809;
-  --cor-subtitulos: #707070;
+    --font-primaria: Roboto;
+    --font-secundaria: Clicker Script;
+    --light-primaria: #F9C06A;
+    --light-secundaria: #1E1E1E;
+    --light-terciaria: #FFFFFF;
+    --light-titulos: #603809;
+    --light-subtitulos: #707070;
+    --dark-bg: #121212;
+    --dark-bg-card: #1D1D1D;
+    --dark-text: #E8E8E8;
+    --dark-subtext: #B5B5B5;
+    --dark-accent: #F9C06A;
+    --cor-fundo-principal: var(--light-terciaria);
+    --cor-fundo-card: var(--light-terciaria);
+    --cor-texto-principal: var(--light-secundaria);
+    --cor-texto-secundario: var(--light-subtitulos);
+    --cor-destaque-primario: var(--light-primaria);
+    --cor-destaque-titulos: var(--light-titulos);
+}
+
+html[data-theme="dark"] {
+    --cor-fundo-principal: var(--dark-bg);
+    --cor-fundo-card: var(--dark-bg-card);
+    --cor-texto-principal: var(--dark-text);
+    --cor-texto-secundario: var(--dark-subtext);
+    --cor-destaque-primario: var(--dark-accent);
+    --cor-destaque-titulos: var(--dark-accent);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
+    transition: background-color 0.4s ease, color 0.4s ease; 
 }
+
+h1, h2, h3 {
+    color: var(--cor-destaque-titulos);
+}
+
+a {
+    color: var(--cor-destaque-primario);
+}
+
+.day-night-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.day-night-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cor-texto-secundario);
+    border-radius: 34px;
+    transition: 0.4s;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--cor-fundo-card);
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: var(--cor-destaque-titulos);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+

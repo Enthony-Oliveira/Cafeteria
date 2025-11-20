@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/dark_mode.css">
+    <link rel="stylesheet" href="darkmode/mapa_dark.css">
     <link rel="stylesheet" href="css/chat_bot.css">
     <link rel="stylesheet" href="css/mapa.css">
     <title>Bean Scene</title>
@@ -29,17 +29,19 @@
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="galeria.html">Galeria</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="mapa.html">Localização</a></li>
                 <li><a href="contato.html">Contato</a></li>
                 <li><a href="mapa.html">Mapa</a></li>
                 <li><a href="agendamento.html">Agendamento</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
             </ul>
         </nav>
+
     </header>
 
     <main>
         <h2 class="titulo-principal-produtos">Como Chegar</h2>
+
+        <!-- Painel de Controles -->
         <div class="mapa-controles">
             <div class="controle-item">
                 <button class="btn-localizacao" id="btnMinhaLocalizacao">
@@ -79,26 +81,33 @@
             </div>
         </div>
 
+        <!-- Container do Mapa -->
         <div class="mapa-container">
+            <!-- Mapa será renderizado aqui -->
             <div id="mapa" class="mapa"></div>
+
+            <!-- Painel de Informações -->
             <div class="info-panel" id="infoPanel">
                 <button class="fechar-panel" id="fecharPanel">×</button>
                 <div class="info-content" id="infoContent">
+                    <!-- Conteúdo dinâmico -->
                 </div>
             </div>
         </div>
 
+        <!-- Cards de Localização -->
         <section class="localizacoes-disponiveis">
             <h3>Nossas Unidades</h3>
             <div class="localizacoes-grid">
-                <div class="local-card" data-lat="-25.4284" data-lng="-49.2733" data-id="unidade1">
+                <!-- Unidade 1 - PERSONALIZE -->
+                <div class="local-card" data-lat="-24.946574679793617" data-lng="-53.48328994623721" data-id="unidade1">
                     <div class="local-icon">📍</div>
                     <h4>Unidade Centro</h4>
-                    <p class="local-endereco">Rua Exemplo, 123<br>Centro - Curitiba/PR</p>
-                    <p class="local-horario">Seg-Sex: 8h-18h | Sáb: 8h-14h</p>
+                    <p class="local-endereco">Rua do Café, 8570<br>Centro - Cascavel/PR</p>
+                    <p class="local-horario">Segunda a Sexta das 8h às 18h e aos Sábados das 8h às 14h</p>
                     <div class="local-acoes">
                         <button class="btn-ir-mapa" data-target="unidade1">Ver no Mapa</button>
-                        <a href="tel:+5541999998888" class="btn-ligar">
+                        <a href="tel:+5545988012638" class="btn-ligar">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
@@ -108,39 +117,23 @@
                     </div>
                     <span class="distancia" data-distancia="unidade1">Calculando...</span>
                 </div>
-
-                <div class="local-card" data-lat="-25.4195" data-lng="-49.2646" data-id="unidade2">
-                    <div class="local-icon">📍</div>
-                    <h4>Unidade Batel</h4>
-                    <p class="local-endereco">Av. do Batel, 456<br>Batel - Curitiba/PR</p>
-                    <p class="local-horario">Seg-Sex: 9h-19h | Sáb: 9h-15h</p>
-                    <div class="local-acoes">
-                        <button class="btn-ir-mapa" data-target="unidade2">Ver no Mapa</button>
-                        <a href="tel:+5541888887777" class="btn-ligar">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                            </svg>
-                            Ligar
-                        </a>
-                    </div>
-                    <span class="distancia" data-distancia="unidade2">Calculando...</span>
-                </div>
+                <!-- Adicione mais unidades conforme necessário -->
             </div>
         </section>
 
+        <!-- Instruções de Acesso -->
         <section class="instrucoes-acesso">
             <h3>Como Chegar</h3>
             <div class="instrucoes-grid">
                 <div class="instrucao-item">
                     <div class="instrucao-icon">🚗</div>
                     <h4>De Carro</h4>
-                    <p>Estacionamento próprio disponível. Acesso fácil pela [NOME DA VIA PRINCIPAL].</p>
+                    <p>Estacionamento próprio disponível. Acesso fácil pela Rua Fortaleza.</p>
                 </div>
                 <div class="instrucao-item">
                     <div class="instrucao-icon">🚌</div>
                     <h4>Transporte Público</h4>
-                    <p>Linhas de ônibus: [NÚMEROS DAS LINHAS]. Ponto em frente ao estabelecimento.</p>
+                    <p>Linhas de ônibus: [Parque Verde - FAG]. Ponto em frente ao estabelecimento.</p>
                 </div>
                 <div class="instrucao-item">
                     <div class="instrucao-icon">🚶</div>
@@ -150,15 +143,18 @@
                 <div class="instrucao-item">
                     <div class="instrucao-icon">🅿️</div>
                     <h4>Estacionamento</h4>
-                    <p>Vagas gratuitas para clientes. [XX] vagas disponíveis.</p>
+                    <p>Vagas gratuitas para clientes. [20] vagas disponíveis.</p>
                 </div>
             </div>
         </section>
     </main>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script src="mapa.js"></script>
+
+    <script src="JS/script.js"></script>
+    <script src="JS/dark.js"></script>
+    <script src="JS/chat_bot.js"></script>
 </body>
 
 </html>

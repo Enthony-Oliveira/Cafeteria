@@ -1,0 +1,69 @@
+/* ====== MODO ESCURO DA PÁGINA PRODUTOS ====== */
+
+/* CORREÇÃO: Usar body.dark-mode e Variáveis Mapeadas */
+
+body.dark-mode {
+    /* Estas regras agora são redundantes se as variáveis mapeadas no global já cobrem o body, 
+       mas servem para garantir a especificidade da página de produtos */
+    background-color: var(--cor-fundo-principal); 
+    color: var(--cor-texto-principal);
+}
+
+/* NAVBAR */
+body.dark-mode .navbar {
+    background-color: var(--cor-fundo-principal);
+}
+
+body.dark-mode .logo-texto {
+    color: var(--cor-texto-principal);
+}
+
+body.dark-mode .nav-links li a {
+    color: var(--cor-texto-principal);
+}
+
+@media (max-width: 768px) {
+    body.dark-mode .bar {
+        background-color: var(--cor-texto-principal); /* Usa cor do texto */
+    }
+    body.dark-mode .nav-links {
+        /* Se preferir uma cor sólida de menu mobile em dark mode: */
+        background-color: var(--cor-fundo-principal); 
+        /* Se quiser manter a transparência: background-color: rgba(255, 255, 255, 0.1); */
+    }
+}
+
+/* SEÇÃO DIFERENCIAIS */
+body.dark-mode .diferenciais-section {
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
+}
+
+body.dark-mode .diferenciais-subtitulo {
+    color: var(--cor-texto-secundario);
+}
+
+body.dark-mode .card-item {
+    background-color: var(--cor-fundo-card); /* Variável mapeada para fundo de card */
+    color: var(--cor-texto-principal);
+    /* Usando a cor do texto secundário para a borda */
+    border: 1px solid var(--cor-texto-secundario); 
+}
+
+body.dark-mode .card-descricao {
+    color: var(--cor-texto-secundario);
+}
+
+body.dark-mode .icone-grao {
+    border-color: var(--cor-destaque-primario);
+}
+
+body.dark-mode .cta-destaque {
+    color: var(--cor-destaque-primario);
+}
+
+body.dark-mode .btn {
+    background-color: var(--cor-destaque-primario);
+    /* Cor do texto do botão para garantir contraste */
+    color: var(--cor-fundo-principal); 
+}
