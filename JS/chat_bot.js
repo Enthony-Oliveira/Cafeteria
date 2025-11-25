@@ -425,7 +425,7 @@ class ChatBot {
 
     redirectToWhatsApp() {
         // PERSONALIZE o número do WhatsApp aqui
-        const phoneNumber = '5541999998888'; // Formato: código país + DDD + número
+        const phoneNumber = '(45) 99941-6884'; // Formato: código país + DDD + número
         const message = this.generateWhatsAppMessage();
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         
