@@ -1,5 +1,3 @@
-/* === CHATBOT JAVASCRIPT === */
-
 class ChatBot {
     constructor() {
         this.isOpen = false;
@@ -14,7 +12,6 @@ class ChatBot {
     }
 
     init() {
-        // Elementos do DOM
         this.chatButton = document.getElementById('chatButton');
         this.chatWindow = document.getElementById('chatWindow');
         this.chatMessages = document.getElementById('chatMessages');
@@ -27,15 +24,11 @@ class ChatBot {
         this.typingIndicator = document.getElementById('typingIndicator');
         this.chatNotification = document.getElementById('chatNotification');
         this.quickSuggestions = document.getElementById('quickSuggestions');
-
-        // Estado inicial
         this.updateChatButton();
     }
 
     initializeResponses() {
-        // Base de conhecimento do chatbot - PERSONALIZE AQUI
         return {
-            // Saudações
             saudacoes: [
                 'olá', 'oi', 'bom dia', 'boa tarde', 'boa noite', 'hey', 'hello'
             ],
@@ -45,7 +38,6 @@ class ChatBot {
                 'Olá! Seja bem-vindo(a)! Como posso ajudar?'
             ],
 
-            // Horários - PERSONALIZE
             horarios: [
                 'horário', 'horarios', 'funcionamento', 'aberto', 'fechado', 'quando'
             ],
@@ -55,7 +47,6 @@ class ChatBot {
                 Domingos: Fechado<br><br>
                 Precisa de mais informações?`,
 
-            // Serviços - PERSONALIZE
             servicos: [
                 'serviço', 'serviços', 'produto', 'produtos', 'oferece', 'fazem'
             ],
@@ -66,7 +57,6 @@ class ChatBot {
                             montagem de estações de café personalizadas e uma variedade de bebidas especiais.<br><br>
                 Gostaria de saber mais sobre algum específico?`,
 
-            // Contato - PERSONALIZE
             contato: [
                 'contato', 'telefone', 'whatsapp', 'email', 'falar'
             ],
@@ -76,7 +66,6 @@ class ChatBot {
                 Email: oliveiraenthony987@gmail.com<br><br>
                 Prefere falar pelo WhatsApp? Clique no botão abaixo! 👇`,
 
-            // Localização - PERSONALIZE
             localizacao: [
                 'onde', 'endereço', 'localização', 'fica', 'local'
             ],
@@ -85,7 +74,6 @@ class ChatBot {
                 Centro - Cascavel/PR<br>
                 Fácil acesso por transporte público!`,
 
-            // Preços
             precos: [
                 'preço', 'precos', 'valor', 'custa', 'quanto'
             ],
@@ -95,7 +83,6 @@ class ChatBot {
                 📱 WhatsApp: (45) 99941-6884 <br>
                 Teremos prazer em atendê-lo!`,
 
-            // Agendamento
             agendamento: [
                 'agendar', 'marcar', 'consulta', 'horario', 'disponível'
             ],
@@ -106,7 +93,6 @@ class ChatBot {
                 • Ou visite nossa página de contato<br><br>
                 Temos horários flexíveis para melhor atendê-lo!`,
 
-            // Respostas padrão
             nao_entendi: [
                 'Desculpe, não entendi muito bem. Pode reformular sua pergunta?',
                 'Hmm, não tenho certeza sobre isso. Pode ser mais específico?',
@@ -125,34 +111,28 @@ class ChatBot {
     }
 
     bindEvents() {
-        // Toggle do chat
         this.chatButton.addEventListener('click', () => {
             this.toggleChat();
         });
 
-        // Fechar chat
         this.closeChatBtn.addEventListener('click', () => {
             this.closeChat();
         });
 
-        // Minimizar chat
         this.minimizeBtn.addEventListener('click', () => {
             this.minimizeChat();
         });
 
-        // Enviar mensagem
         this.sendBtn.addEventListener('click', () => {
             this.sendMessage();
         });
 
-        // Enter para enviar
         this.chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 this.sendMessage();
             }
         });
 
-        // Sugestões rápidas
         this.quickSuggestions.addEventListener('click', (e) => {
             if (e.target.classList.contains('suggestion-btn')) {
                 const suggestion = e.target.getAttribute('data-suggestion');
@@ -160,18 +140,15 @@ class ChatBot {
             }
         });
 
-        // WhatsApp redirect
         this.whatsappBtn.addEventListener('click', () => {
             this.redirectToWhatsApp();
         });
 
-        // Fechar notificação ao clicar
         this.chatNotification.addEventListener('click', () => {
             this.hideNotification();
             this.openChat();
         });
 
-        // Auto-hide notification
         setTimeout(() => {
             this.hideNotification();
         }, 8000);
@@ -201,8 +178,6 @@ class ChatBot {
         this.updateChatButton();
         this.hideBadge();
         this.hideNotification();
-
-        // Focus no input
         setTimeout(() => {
             this.chatInput.focus();
         }, 300);
@@ -239,20 +214,11 @@ class ChatBot {
     sendMessage() {
         const message = this.chatInput.value.trim();
         if (!message) return;
-
-        // Adicionar mensagem do usuário
         this.addMessage(message, 'user');
-
-        // Limpar input
         this.chatInput.value = '';
-
-        // Salvar no histórico
-        this.conversationHistory.push({ type: 'user', message, time: new Date() });
-
-        // Mostrar typing indicator
+        this.conversationHistory.push({ type: 'user', message, time: new Date() }); cator
         this.showTypingIndicator();
 
-        // Processar resposta com delay realista
         setTimeout(() => {
             this.processMessage(message);
         }, Math.random() * 1500 + 500);
@@ -282,7 +248,6 @@ class ChatBot {
         this.chatMessages.appendChild(messageDiv);
         this.scrollToBottom();
 
-        // Mostrar badge se chat fechado
         if (!this.isOpen && sender === 'bot') {
             this.showBadge();
         }
@@ -294,34 +259,28 @@ class ChatBot {
         const message = userMessage.toLowerCase();
         let response = this.findBestResponse(message);
 
-        // Adicionar resposta do bot
         this.addMessage(response, 'bot', true);
 
-        // Salvar no histórico
         this.conversationHistory.push({
             type: 'bot',
             message: response,
             time: new Date()
         });
 
-        // Mostrar notificação se chat fechado
         if (!this.isOpen) {
             this.showNotification('Nova resposta!', 'O assistente respondeu sua pergunta');
         }
     }
 
     findBestResponse(message) {
-        // Verificar saudações
         if (this.containsAny(message, this.responses.saudacoes)) {
             return this.getRandomResponse(this.responses.respostas_saudacao);
         }
 
-        // Verificar despedida
         if (this.containsAny(message, this.responses.despedida)) {
             return this.getRandomResponse(this.responses.resposta_despedida);
         }
 
-        // Verificar tópicos específicos
         if (this.containsAny(message, this.responses.horarios)) {
             return this.responses.resposta_horarios;
         }
@@ -346,7 +305,6 @@ class ChatBot {
             return this.responses.resposta_agendamento;
         }
 
-        // Resposta padrão se não encontrou match
         return this.getRandomResponse(this.responses.nao_entendi);
     }
 
@@ -407,7 +365,6 @@ class ChatBot {
         notification.querySelector('p').textContent = message;
         notification.style.display = 'block';
 
-        // Auto-hide após 5 segundos
         setTimeout(() => {
             this.hideNotification();
         }, 5000);
@@ -424,8 +381,7 @@ class ChatBot {
     }
 
     redirectToWhatsApp() {
-        // PERSONALIZE o número do WhatsApp aqui
-        const phoneNumber = '(45) 99941-6884'; // Formato: código país + DDD + número
+        const phoneNumber = '(45) 99941-6884';
         const message = this.generateWhatsAppMessage();
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -435,7 +391,6 @@ class ChatBot {
     generateWhatsAppMessage() {
         let message = 'Olá! Vim através do chat do site.\n\n';
 
-        // Incluir histórico recente se houver
         const recentMessages = this.conversationHistory.slice(-3);
         if (recentMessages.length > 0) {
             message += 'Histórico da conversa:\n';
@@ -457,8 +412,7 @@ class ChatBot {
         div.textContent = text;
         return div.innerHTML;
     }
-
-    // Método público para adicionar respostas personalizadas
+    s
     addCustomResponse(keywords, response) {
         this.responses[`custom_${Date.now()}`] = {
             keywords,
@@ -466,7 +420,6 @@ class ChatBot {
         };
     }
 
-    // Método para obter estatísticas
     getStats() {
         return {
             totalMessages: this.conversationHistory.length,
@@ -478,9 +431,7 @@ class ChatBot {
     }
 }
 
-// Inicializar o chatbot quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificar se todos os elementos necessários existem
     if (document.getElementById('chatButton')) {
         window.chatBot = new ChatBot();
         console.log('Chatbot inicializado com sucesso!');
@@ -489,7 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Funções globais para controle externo
 function openChatBot() {
     if (window.chatBot) {
         window.chatBot.openChat();
@@ -508,7 +458,6 @@ function addChatBotResponse(keywords, response) {
     }
 }
 
-// Export para uso em módulos
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { ChatBot, openChatBot, closeChatBot };
 }
