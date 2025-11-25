@@ -91,10 +91,10 @@
 }
 
 .blog-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--cor-terciaria);
     padding: 100px 20px;
     text-align: center;
-    color: var(--cor-terciaria);
+    color: var(--cor-primaria);
     position: relative;
     overflow: hidden;
 }
