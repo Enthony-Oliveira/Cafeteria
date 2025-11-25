@@ -7,7 +7,7 @@ class ChatBot {
         this.conversationHistory = [];
         this.responses = this.initializeResponses();
         this.userInfo = {};
-        
+
         this.init();
         this.bindEvents();
         this.showWelcomeNotification();
@@ -60,9 +60,10 @@ class ChatBot {
                 'serviço', 'serviços', 'produto', 'produtos', 'oferece', 'fazem'
             ],
             resposta_servicos: `💼 <strong>Nossos principais serviços:</strong><br>
-                • [SERVIÇO 1 - Ex: Consultas especializadas]<br>
-                • [SERVIÇO 2 - Ex: Atendimento personalizado]<br>
-                • [SERVIÇO 3 - Ex: Produtos premium]<br><br>
+                • Uma Cesta de Café da manha com varias acompanhamento<br>
+                • Entrega de Bolos e Tortas<br>
+                • serviços de café para eventos, que incluem baristas profissionais,
+                            montagem de estações de café personalizadas e uma variedade de bebidas especiais.<br><br>
                 Gostaria de saber mais sobre algum específico?`,
 
             // Contato - PERSONALIZE
@@ -70,8 +71,8 @@ class ChatBot {
                 'contato', 'telefone', 'whatsapp', 'email', 'falar'
             ],
             resposta_contato: `📞 <strong>Entre em contato conosco:</strong><br>
-                Telefone: (41) 3333-4444<br>
-                WhatsApp: (41) 99999-8888<br>
+                Telefone: (45) 99941-6884<br>
+                WhatsApp: (45) 99941-6884<br>
                 Email: contato@seunegocio.com<br><br>
                 Prefere falar pelo WhatsApp? Clique no botão abaixo! 👇`,
 
@@ -201,7 +202,7 @@ class ChatBot {
         this.updateChatButton();
         this.hideBadge();
         this.hideNotification();
-        
+
         // Focus no input
         setTimeout(() => {
             this.chatInput.focus();
@@ -224,7 +225,7 @@ class ChatBot {
     updateChatButton() {
         const chatIcon = this.chatButton.querySelector('.chat-icon');
         const closeIcon = this.chatButton.querySelector('.close-icon');
-        
+
         if (this.isOpen) {
             this.chatButton.classList.add('chat-open');
             chatIcon.style.display = 'none';
@@ -242,16 +243,16 @@ class ChatBot {
 
         // Adicionar mensagem do usuário
         this.addMessage(message, 'user');
-        
+
         // Limpar input
         this.chatInput.value = '';
-        
+
         // Salvar no histórico
         this.conversationHistory.push({ type: 'user', message, time: new Date() });
-        
+
         // Mostrar typing indicator
         this.showTypingIndicator();
-        
+
         // Processar resposta com delay realista
         setTimeout(() => {
             this.processMessage(message);
@@ -261,14 +262,14 @@ class ChatBot {
     addMessage(message, sender, isHTML = false) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}-message`;
-        
-        const time = new Date().toLocaleTimeString('pt-BR', { 
-            hour: '2-digit', 
-            minute: '2-digit' 
+
+        const time = new Date().toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
         });
-        
+
         const avatar = sender === 'user' ? 'U' : '<img src="imagens/logo.png" alt="Bot">';
-        
+
         messageDiv.innerHTML = `
             <div class="message-avatar">
                 ${avatar}
@@ -278,10 +279,10 @@ class ChatBot {
                 <span class="message-time">${time}</span>
             </div>
         `;
-        
+
         this.chatMessages.appendChild(messageDiv);
         this.scrollToBottom();
-        
+
         // Mostrar badge se chat fechado
         if (!this.isOpen && sender === 'bot') {
             this.showBadge();
@@ -290,20 +291,20 @@ class ChatBot {
 
     processMessage(userMessage) {
         this.hideTypingIndicator();
-        
+
         const message = userMessage.toLowerCase();
         let response = this.findBestResponse(message);
-        
+
         // Adicionar resposta do bot
         this.addMessage(response, 'bot', true);
-        
+
         // Salvar no histórico
-        this.conversationHistory.push({ 
-            type: 'bot', 
-            message: response, 
-            time: new Date() 
+        this.conversationHistory.push({
+            type: 'bot',
+            message: response,
+            time: new Date()
         });
-        
+
         // Mostrar notificação se chat fechado
         if (!this.isOpen) {
             this.showNotification('Nova resposta!', 'O assistente respondeu sua pergunta');
@@ -315,44 +316,44 @@ class ChatBot {
         if (this.containsAny(message, this.responses.saudacoes)) {
             return this.getRandomResponse(this.responses.respostas_saudacao);
         }
-        
+
         // Verificar despedida
         if (this.containsAny(message, this.responses.despedida)) {
             return this.getRandomResponse(this.responses.resposta_despedida);
         }
-        
+
         // Verificar tópicos específicos
         if (this.containsAny(message, this.responses.horarios)) {
             return this.responses.resposta_horarios;
         }
-        
+
         if (this.containsAny(message, this.responses.servicos)) {
             return this.responses.resposta_servicos;
         }
-        
+
         if (this.containsAny(message, this.responses.contato)) {
             return this.responses.resposta_contato;
         }
-        
+
         if (this.containsAny(message, this.responses.localizacao)) {
             return this.responses.resposta_localizacao;
         }
-        
+
         if (this.containsAny(message, this.responses.precos)) {
             return this.responses.resposta_precos;
         }
-        
+
         if (this.containsAny(message, this.responses.agendamento)) {
             return this.responses.resposta_agendamento;
         }
-        
+
         // Resposta padrão se não encontrou match
         return this.getRandomResponse(this.responses.nao_entendi);
     }
 
     handleQuickSuggestion(suggestion) {
         let message = '';
-        switch(suggestion) {
+        switch (suggestion) {
             case 'horarios':
                 message = 'Quais são os horários de funcionamento?';
                 break;
@@ -366,7 +367,7 @@ class ChatBot {
                 message = 'Onde vocês ficam localizados?';
                 break;
         }
-        
+
         if (message) {
             this.chatInput.value = message;
             this.sendMessage();
@@ -406,7 +407,7 @@ class ChatBot {
         notification.querySelector('strong').textContent = title;
         notification.querySelector('p').textContent = message;
         notification.style.display = 'block';
-        
+
         // Auto-hide após 5 segundos
         setTimeout(() => {
             this.hideNotification();
@@ -428,13 +429,13 @@ class ChatBot {
         const phoneNumber = '(45) 99941-6884'; // Formato: código país + DDD + número
         const message = this.generateWhatsAppMessage();
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        
+
         window.open(whatsappUrl, '_blank');
     }
 
     generateWhatsAppMessage() {
         let message = 'Olá! Vim através do chat do site.\n\n';
-        
+
         // Incluir histórico recente se houver
         const recentMessages = this.conversationHistory.slice(-3);
         if (recentMessages.length > 0) {
@@ -448,7 +449,7 @@ class ChatBot {
         } else {
             message += 'Gostaria de mais informações sobre seus serviços.';
         }
-        
+
         return message;
     }
 
