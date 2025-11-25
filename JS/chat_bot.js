@@ -92,7 +92,7 @@ class ChatBot {
             resposta_precos: `💰 <strong>Preços e orçamentos:</strong><br>
                 Nossos valores variam conforme o serviço escolhido.<br>
                 Para um orçamento personalizado, entre em contato:<br><br>
-                📱 WhatsApp: (41) 99999-8888<br>
+                📱 WhatsApp: (45) 99941-6884 <br>
                 Teremos prazer em atendê-lo!`,
 
             // Agendamento
@@ -101,8 +101,8 @@ class ChatBot {
             ],
             resposta_agendamento: `📅 <strong>Agendamentos:</strong><br>
                 Para marcar seu horário:<br>
-                • Ligue: (41) 3333-4444<br>
-                • WhatsApp: (41) 99999-8888<br>
+                • Ligue: (45) 99941-6884 <br>
+                • WhatsApp: (45) 99941-6884 <br>
                 • Ou visite nossa página de contato<br><br>
                 Temos horários flexíveis para melhor atendê-lo!`,
 
