@@ -375,7 +375,12 @@
     justify-content: center;
     gap: 5px;
     font-family: var(--font-primaria);
+    background-color: var(--cor-destaque-titulos);
     /* Adicionado Roboto */
+}
+
+.titulo-principal-produtos {
+    font-family: var(--font-primaria);
 }
 
 .btn-ir-mapa {
@@ -392,9 +397,10 @@
 
 .btn-ligar {
     /* ADAPTAÇÃO: Corrigido para variável mapeada */
-    background: var(--cor-destaque-secundario);
+    background: var(--cor-destaque-titulos);
     color: var(--cor-fundo-principal);
     border: 2px solid var(--cor-destaque-secundario);
+    font-family: var(--font-primaria);
 }
 
 .btn-ligar:hover {
@@ -405,6 +411,7 @@
 .btn-ligar svg {
     width: 14px;
     height: 14px;
+    font-family: var(--font-primaria);
 }
 
 .distancia {

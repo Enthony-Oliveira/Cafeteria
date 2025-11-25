@@ -11,22 +11,12 @@ const unidades = [
     {
         id: 'unidade1',
         nome: 'Unidade Centro',
-        lat: -25.4284,  // Latitude - ALTERE para sua localização real
-        lng: -49.2733,  // Longitude - ALTERE para sua localização real
-        endereco: 'Rua Exemplo, 123<br>Centro - Curitiba/PR',
-        telefone: '+5541999998888',
-        horario: 'Seg-Sex: 8h-18h | Sáb: 8h-14h',
+        lat: -24.946574679793617,  // Latitude - ALTERE para sua localização real
+        lng: -53.48328994623721,  // Longitude - ALTERE para sua localização real
+        endereco: 'Rua Natal, 2280<br>Centro - Cascavel/PR',
+        telefone: '+5545988012638',
+        horario: 'Atendemos de segunda a sexta das 8h às 18h e aos sábados das 8h às 14h',
         descricao: 'Nossa unidade principal no centro da cidade.'
-    },
-    {
-        id: 'unidade2',
-        nome: 'Unidade Batel',
-        lat: -25.4195,
-        lng: -49.2646,
-        endereco: 'Av. do Batel, 456<br>Batel - Curitiba/PR',
-        telefone: '+5541888887777',
-        horario: 'Seg-Sex: 9h-19h | Sáb: 9h-15h',
-        descricao: 'Unidade moderna com estacionamento amplo.'
     }
     // Adicione mais unidades conforme necessário
 ];
