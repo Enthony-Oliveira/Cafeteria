@@ -73,7 +73,7 @@ class ChatBot {
             resposta_contato: `📞 <strong>Entre em contato conosco:</strong><br>
                 Telefone: (45) 99941-6884<br>
                 WhatsApp: (45) 99941-6884<br>
-                Email: contato@seunegocio.com<br><br>
+                Email: oliveiraenthony987@gmail.com<br><br>
                 Prefere falar pelo WhatsApp? Clique no botão abaixo! 👇`,
 
             // Localização - PERSONALIZE
@@ -81,9 +81,8 @@ class ChatBot {
                 'onde', 'endereço', 'localização', 'fica', 'local'
             ],
             resposta_localizacao: `📍 <strong>Nossa localização:</strong><br>
-                Rua Exemplo, 123<br>
-                Centro - Sua Cidade/UF<br>
-                CEP: 00000-000<br><br>
+                Rua do Cafe, 8570<br>
+                Centro - Cascavel/PR<br>
                 Fácil acesso por transporte público!`,
 
             // Preços
