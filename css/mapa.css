@@ -335,7 +335,7 @@
 .local-endereco {
     text-align: center;
     /* ADAPTAÇÃO: Corrigido para variável mapeada */
-    color: var(--cor-texto-secundario);
+    color: var(--cor-destaque-titulos);
     margin-bottom: 10px;
     line-height: 1.5;
 }
@@ -350,6 +350,7 @@
     /* ADAPTAÇÃO: Corrigido para variável mapeada (fundo leve) */
     background: var(--cor-fundo-principal);
     border-radius: 8px;
+    font-family: var(--font-primaria);
 }
 
 .local-acoes {
